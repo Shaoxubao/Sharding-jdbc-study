@@ -8,9 +8,9 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
 
-    @Insert("insert into user(nickname,password,sex,birthday) values(#{nickname},#{password},#{sex},#{birthday})")
+    @Insert("insert into ksd_user(nickname,password,sex,birthday,age) values(#{nickname},#{password},#{sex},#{birthday},#{age})")
     void addUser(User user);
 
-    @Select("select * from user")
+    @Select("select * from ksd_user")
     List<User> findUsers();
 }

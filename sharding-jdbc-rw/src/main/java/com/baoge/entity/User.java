@@ -13,4 +13,6 @@ public class User {
     private Integer sex;
     // 性
     private String birthday;
+    // 年龄
+    private int age;
 }
