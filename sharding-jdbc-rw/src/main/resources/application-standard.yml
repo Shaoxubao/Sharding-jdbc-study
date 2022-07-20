@@ -35,6 +35,11 @@ spring:
       tables:
         # ksd_user 逻辑表名
         ksd_user:
+          # 指明主键id的生成算法,此时数据库主键不能使用自增长
+          key-generator:
+            # 主键的列明，
+            column: id
+            type: SNOWFLAKE
           # 数据节点：数据源$->{0..N}.逻辑表名$->{0..N}
           actual-data-nodes: ds$->{0..1}.ksd_user$->{0..1}
           # 拆分库策略，也就是什么样子的数据放入放到哪个数据库中。

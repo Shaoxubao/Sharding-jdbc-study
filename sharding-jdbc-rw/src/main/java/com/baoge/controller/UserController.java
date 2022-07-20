@@ -22,8 +22,9 @@ public class UserController {
         user.setPassword("1234567");
         user.setSex(1);
         user.setBirthday(new Date());
-        user.setAge(21);
+        user.setAge(22);
         userMapper.addUser(user);
+        System.out.println(user.getId());
         return "success";
     }
     @GetMapping("/listUser")
