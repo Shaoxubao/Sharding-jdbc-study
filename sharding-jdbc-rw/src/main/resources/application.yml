@@ -5,7 +5,7 @@ spring:
   main:
     allow-bean-definition-overriding: true
   profiles:
-    active: sub
+    active: standard
 
 # 整合mybatis的配置XXXXX
 mybatis:

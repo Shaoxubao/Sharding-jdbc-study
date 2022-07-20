@@ -39,9 +39,9 @@ spring:
           actual-data-nodes: ds$->{0..1}.ksd_user$->{0..1}
           # 拆分库策略，也就是什么样子的数据放入放到哪个数据库中。
           database-strategy:
-            inline:
-              sharding-column: sex    # 分片字段（分片键）
-              algorithm-expression: ds$->{sex % 2} # 分片算法表达式
+            standard:
+              sharding-column: birthday    # 分片字段（分片键）
+              preciseAlgorithmClassName: com.baoge.algorithm.BirthdayAlgorithm
           # 拆分表策略，也就是什么样子的数据放入放到哪个数据表中。
           table-strategy:
             inline:

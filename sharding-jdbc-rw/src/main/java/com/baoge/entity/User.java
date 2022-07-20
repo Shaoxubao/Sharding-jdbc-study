@@ -1,10 +1,12 @@
 package com.baoge.entity;
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 public class User {
     // 主键
-    private Integer id;
+    private Long id;
     // 昵称
     private String nickname;
     // 密码
@@ -12,7 +14,7 @@ public class User {
     // 性
     private Integer sex;
     // 性
-    private String birthday;
+    private Date birthday;
     // 年龄
     private int age;
 }
