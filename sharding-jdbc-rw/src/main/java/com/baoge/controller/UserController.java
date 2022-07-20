@@ -1,6 +1,8 @@
 package com.baoge.controller;
+import com.baoge.entity.Order;
 import com.baoge.entity.User;
 import com.baoge.mapper.UserMapper;
+import com.baoge.mapper.UserOrderMapper;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +17,10 @@ import java.util.Random;
 public class UserController {
     @Resource
     private UserMapper userMapper;
+
+    @Resource
+    private UserOrderMapper userOrderMapper;
+
     @GetMapping("/save")
     public String insert() {
         User user = new User();
@@ -27,8 +33,20 @@ public class UserController {
         System.out.println(user.getId());
         return "success";
     }
+
     @GetMapping("/listUser")
     public List<User> listUser() {
         return userMapper.findUsers();
+    }
+
+    @GetMapping("/saveOrder")
+    public String insertOrder() {
+        Order order = new Order();
+        order.setCreateTime(new Date());
+        order.setOrderNumber("133455678");
+        order.setYearmonth("202203");
+        order.setUserId(1L);
+        userOrderMapper.addUserOrder(order);
+        return "success";
     }
 }
