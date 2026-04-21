@@ -1,0 +1,79 @@
+spring:
+  shardingsphere:
+    datasource:
+      names: old-ds,ds0,ds1,ds2,ds3
+      old-ds:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/price_db?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false
+        username: root
+        password: 123456
+        maxPoolSize: 50
+        minPoolSize: 10
+      ds0:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/price_db_0?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false
+        username: root
+        password: 123456
+        maxPoolSize: 50
+        minPoolSize: 10
+      ds1:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/price_db_1?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false
+        username: root
+        password: 123456
+        maxPoolSize: 50
+        minPoolSize: 10
+      ds2:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/price_db_2?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false
+        username: root
+        password: 123456
+        maxPoolSize: 50
+        minPoolSize: 10
+      ds3:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/price_db_3?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false
+        username: root
+        password: 123456
+        maxPoolSize: 50
+        minPoolSize: 10
+    
+    sharding:
+      default-data-source-name: old-ds
+      
+      tables:
+        product_price:
+          actual-data-nodes: ds$->{0..3}.product_price_$->{0..7}
+          key-generator:
+            column: id
+            type: SNOWFLAKE
+            props:
+              worker:
+                id: 1
+          database-strategy:
+            inline:
+              sharding-column: product_id
+              algorithm-expression: ds$->{product_id % 4}
+          table-strategy:
+            inline:
+              sharding-column: product_id
+              algorithm-expression: product_price_$->{product_id % 8}
+    
+    props:
+      sql:
+        show: true
+      executor:
+        size: 20
+
+migration:
+  dual-write:
+    enabled: true
+    old-table-write: true
+    new-table-write: true
+  read:
+    source: old

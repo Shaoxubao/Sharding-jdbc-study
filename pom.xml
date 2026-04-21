@@ -11,6 +11,7 @@
 
     <modules>
         <module>sharding-jdbc-rw</module>
+        <module>sharding-jdbc-price</module>
     </modules>
 
 </project>

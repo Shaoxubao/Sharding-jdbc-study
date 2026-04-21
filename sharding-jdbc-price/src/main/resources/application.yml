@@ -1,0 +1,20 @@
+server:
+  port: 8087
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  profiles:
+    active: old
+
+migration:
+  dual-write:
+    enabled: false
+    old-table-write: true
+    new-table-write: true
+  read:
+    source: old
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.baoge.entity
