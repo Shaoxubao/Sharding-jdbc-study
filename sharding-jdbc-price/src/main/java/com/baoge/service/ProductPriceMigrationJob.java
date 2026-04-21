@@ -124,7 +124,7 @@ public class ProductPriceMigrationJob {
         
         executor.shutdown();
         
-        log.info("并发数据迁移完成，失败：{} 条", failedIds.size());
+        log.info("并发数据迁移完成，失败 ：{} 条", failedIds.size());
         
         if (!failedIds.isEmpty()) {
             log.error("迁移失败的ID列表：{}", failedIds);
