@@ -119,7 +119,7 @@ public class ProductPriceMigrationJob {
         try {
             latch.await(1, TimeUnit.DAYS);
         } catch (InterruptedException e) {
-            log.error("数据迁移被中断", e);
+            log.error("数据迁移被中断:", e);
         }
         
         executor.shutdown();
