@@ -38,7 +38,7 @@ public class ProductPriceMigrationJob {
         long totalCount = oldPriceMapper.count();
         long migratedCount = 0;
         
-        log.info("开始全量数据迁移，总数据量为：{}", totalCount);
+        log.info("开始全量数据迁移，总数据量：{}", totalCount);
         
         int pageNum = 1;
         int pageSize = BATCH_SIZE;
