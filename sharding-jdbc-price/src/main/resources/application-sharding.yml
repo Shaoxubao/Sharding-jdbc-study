@@ -55,6 +55,22 @@ spring:
             inline:
               sharding-column: product_id
               algorithm-expression: product_price_$->{product_id % 8}
+        product_price_history:
+          actual-data-nodes: ds$->{0..3}.product_price_history_$->{0..7}
+          key-generator:
+            column: id
+            type: SNOWFLAKE
+            props:
+              worker:
+                id: 1
+          database-strategy:
+            inline:
+              sharding-column: product_id
+              algorithm-expression: ds$->{product_id % 4}
+          table-strategy:
+            inline:
+              sharding-column: product_id
+              algorithm-expression: product_price_history_$->{product_id % 8}
     
     props:
       sql:

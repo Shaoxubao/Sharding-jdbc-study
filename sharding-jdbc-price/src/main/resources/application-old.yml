@@ -19,7 +19,22 @@ spring:
           actual-data-nodes: old-ds.product_price
           key-generator:
             column: id
-            type: AUTO
+            type: SNOWFLAKE
+            props:
+              worker:
+                id: 0
+          table-strategy:
+            none:
+          database-strategy:
+            none:
+        product_price_history:
+          actual-data-nodes: old-ds.product_price_history
+          key-generator:
+            column: id
+            type: SNOWFLAKE
+            props:
+              worker:
+                id: 0
           table-strategy:
             none:
           database-strategy:

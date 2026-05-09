@@ -67,8 +67,8 @@ public class ProductPriceService {
         return productPriceMapper.selectByPriceRange(productId, minPrice, maxPrice);
     }
     
-    public List<ProductPrice> queryHistoryPrice(Long productId, int limit) {
-        return productPriceMapper.selectHistoryByProductId(productId, limit);
+    public List<ProductPriceHistory> queryHistoryPrice(Long productId, int limit) {
+        return historyMapper.selectByProductId(productId, limit);
     }
     
     public ProductPrice getPriceById(Long id) {

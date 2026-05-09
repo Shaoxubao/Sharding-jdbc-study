@@ -1,6 +1,7 @@
 package com.baoge.controller;
 
 import com.baoge.entity.ProductPrice;
+import com.baoge.entity.ProductPriceHistory;
 import com.baoge.service.DataConsistencyChecker;
 import com.baoge.service.ProductPriceMigrationJob;
 import com.baoge.service.ProductPriceReadService;
@@ -119,7 +120,7 @@ public class ProductPriceController {
                                                    @RequestParam(defaultValue = "10") int limit) {
         Map<String, Object> result = new HashMap<>();
         try {
-            List<ProductPrice> prices = priceService.queryHistoryPrice(productId, limit);
+            List<ProductPriceHistory> prices = priceService.queryHistoryPrice(productId, limit);
             result.put("success", true);
             result.put("data", prices);
         } catch (Exception e) {

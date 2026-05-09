@@ -11,14 +11,13 @@ import java.util.List;
 @Repository
 public interface ProductPriceMapper {
     
-    @Insert("INSERT INTO product_price (product_id, sku_id, price, original_price, cost_price, start_time, end_time, status, create_time, update_time) " +
-            "VALUES (#{productId}, #{skuId}, #{price}, #{originalPrice}, #{costPrice}, #{startTime}, #{endTime}, #{status}, #{createTime}, #{updateTime})")
-    @Options(useGeneratedKeys = true, keyColumn = "id", keyProperty = "id")
+    @Insert("INSERT INTO product_price (id, product_id, sku_id, price, original_price, cost_price, start_time, end_time, status, create_time, update_time) " +
+            "VALUES (#{id}, #{productId}, #{skuId}, #{price}, #{originalPrice}, #{costPrice}, #{startTime}, #{endTime}, #{status}, #{createTime}, #{updateTime})")
     int insert(ProductPrice productPrice);
     
     @Update("UPDATE product_price SET price = #{price}, original_price = #{originalPrice}, " +
             "cost_price = #{costPrice}, start_time = #{startTime}, end_time = #{endTime}, " +
-            "status = #{status}, update_time = #{updateTime} WHERE id = #{id}")
+            "status = #{status}, update_time = #{updateTime} WHERE id = #{id} AND product_id = #{productId}")
     int update(ProductPrice productPrice);
     
     @Select("SELECT * FROM product_price WHERE id = #{id}")
